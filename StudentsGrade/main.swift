@@ -15,7 +15,7 @@ var historyLines: String = ""
 var mathLines: String = ""
 var line = ""
 
-if let contents = try? String(contentsOfFile: "/Users/helinkoylu/Desktop/Dogus/Cornerstone/StudentGrades/StudentGrades/\(filename)") {
+if let contents = try? String(contentsOfFile: "/Users/helinkoylu/Desktop/Dogus/StudentsGrade/StudentsGrade/\(filename)") {
   let raws = contents.components(separatedBy: .newlines)
   for i in stride(from: 1, to: raws.count-1, by: +2)
   {
