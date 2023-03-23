@@ -14,9 +14,6 @@ var englishLines: String = ""
 var historyLines: String = ""
 var mathLines: String = ""
 var line = ""
-var englishStudent: [Student] = []
-var mathStudent: [Student] = []
-var historyStudent: [Student] = []
 
 if let contents = try? String(contentsOfFile: "/Users/helinkoylu/Desktop/Dogus/Cornerstone/StudentGrades/StudentGrades/\(filename)") {
   let raws = contents.components(separatedBy: .newlines)
@@ -27,8 +24,9 @@ if let contents = try? String(contentsOfFile: "/Users/helinkoylu/Desktop/Dogus/C
     let lastName = raw[0].replacingOccurrences(of: ",", with: "")
     let lessonRaw = raws[i+1].components(separatedBy: " ")
     let course = lessonRaw[0]
-    print(firstName,lastName)
+    
     switch course {
+      
     case "Math":
       let quiz1 = Int(lessonRaw[1])!
       let quiz2 = Int(lessonRaw[2])!
@@ -40,14 +38,14 @@ if let contents = try? String(contentsOfFile: "/Users/helinkoylu/Desktop/Dogus/C
       let finalExamGrade = Int(lessonRaw[8])!
       let student = MathStudent(firstName: firstName, lastName: lastName, quiz1: quiz1, quiz2: quiz2, quiz3: quiz3, quiz4: quiz4, quiz5: quiz5, test1Grade: test1Grade, test2Grade: test2Grade, finalExamGrade: finalExamGrade)
       students.append(student)
-      mathStudent.append(student)
+      
     case "English":
       let termPaperGrade = Int(lessonRaw[1])!
       let midtermGrade = Int(lessonRaw[2])!
       let finalExampGrade = Int(lessonRaw[3])!
       let student = EnglishStudent(firstName: firstName, lastName: lastName, termPaperGrade: termPaperGrade, midtermGrade: midtermGrade, finalExamGrade: finalExampGrade)
       students.append(student)
-      englishStudent.append(student)
+      
     case "History":
       let attendanceGrade = Int(lessonRaw[1])!
       let projectGrade = Int(lessonRaw[2])!
@@ -55,18 +53,19 @@ if let contents = try? String(contentsOfFile: "/Users/helinkoylu/Desktop/Dogus/C
       let finalExamGrade = Int(lessonRaw[4])!
       let student = HistoryStudent(firstName: firstName, lastName: lastName, attendanceGrade: attendanceGrade, projectGrade: projectGrade, midtermGrade: midtermGrade, finalExamGrade: finalExamGrade)
       students.append(student)
-      historyStudent.append(student)
+
     default:
       fatalError("Invalid course: \(course)")
     }
   }
-  print(students)
 }
 
 students.sort { $0.lastName < $1.lastName }
 
 var totalA = 0, totalB = 0, totalC = 0, totalD = 0, totalF = 0
+
 for student in students {
+  
   let finalAverage = student.computeFinalAverage()
   var letterGrade: String
   let finalExam = student.finalExam
