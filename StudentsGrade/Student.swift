@@ -37,7 +37,7 @@ class Student {
   }
   
   func computeFinalAverage() -> Double {
-          fatalError("computeFinalAverage() must be implemented in derived classes")
+          fatalError("")
       }
   
 }
